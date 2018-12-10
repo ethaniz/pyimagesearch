@@ -23,3 +23,15 @@ sdl = SimpleDatasetLoader(preprocessors=[sp])
 data = data.reshape((data.shape[0], 3072))
 
 print("[INFO] features matrix: {:.1f}MB".format(data.nbytes/(1024 * 1000.0)))
+
+le = LabelEncoder()
+labels = le.fit_transform(labels)
+
+(trainX, testX, trainY, testY) = train_test_split(data, labels, test_size=0.25, random_state=42)
+
+print("[INFO] evaluating k-NN classifier...")
+model = KNeighborsClassifier(n_neighbors=args["neighbors"],
+    n_jobs=args["jobs"])
+model.fit(trainX, trainY)
+print(classification_report(testY, model.predict(testX),
+    target_names=le.classes_))
