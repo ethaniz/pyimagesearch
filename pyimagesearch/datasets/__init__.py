@@ -1,1 +1,1 @@
-from simpledatasetloader import SimpleDatasetLoader
+from .simpledatasetloader import SimpleDatasetLoader
