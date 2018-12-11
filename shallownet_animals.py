@@ -14,7 +14,7 @@ import numpy as np
 import argparse
 
 ap = argparse.ArgumentParser()
-ap.add_argument("-d", "--dateset", required=True,
+ap.add_argument("-d", "--dataset", required=True,
     help="path to input dataset")
 args = vars(ap.parse_args())
 
