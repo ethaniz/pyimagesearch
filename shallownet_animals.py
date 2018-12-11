@@ -16,6 +16,8 @@ import argparse
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True,
     help="path to input dataset")
+ap.add_argument("-m", "--model", required=True,
+    help="path to output model")
 args = vars(ap.parse_args())
 
 print("[INFO] loading images...")
@@ -43,6 +45,9 @@ model.compile(loss="categorical_crossentropy", optimizer=opt,
 print("[INFO] training network...")
 H = model.fit(trainX, trainY, validation_data=(testX, testY),
     batch_size=32, epochs=100, verbose=1)
+
+print("[INFO] serializing network...")
+model.save(args["model"])
 
 print("[INFO] evaluating network...")
 predictions = model.predict(testX, batch_size=32)
