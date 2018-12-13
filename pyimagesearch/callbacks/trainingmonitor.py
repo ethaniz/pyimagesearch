@@ -23,7 +23,7 @@ class TrainingMonitor(BaseLogger):
                     for k in self.H.keys():
                         self.H[k] = self.H[k][:self.startAt]
 
-    def on_train_end(self, epoch, logs={}):
+    def on_epoch_end(self, epoch, logs={}):
         for (k, v) in logs.items():
             l = self.H.get(k, [])
             l.append(v)
