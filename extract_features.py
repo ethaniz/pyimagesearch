@@ -20,7 +20,7 @@ ap.add_argument("-o", "--output", required=True,
     help="path to output HDF5 file")
 ap.add_argument("-b", "--batch_size", type=int, default=32,
     help="batch size of images to be passed through network")
-ap.add_argument("-s", "--buffer-size", type=int, defau;t=1000,
+ap.add_argument("-s", "--buffer-size", type=int, default=1000,
     help="size of feature extraction buffer")
 args = vars(ap.parse_args())
 
