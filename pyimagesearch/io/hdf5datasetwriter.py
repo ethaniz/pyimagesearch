@@ -36,7 +36,7 @@ class HDF5DatasetWriter:
             (len(classLabels) ,), dtype=dt)
         labelSet[:] = classLabels
 
-    def close(self):
+    def close(self):    
         if len(self.buffer["data"]) > 0:
             self.flush()
 
