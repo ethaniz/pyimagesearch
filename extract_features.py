@@ -12,6 +12,7 @@ import progressbar
 import argparse
 import random
 import os
+import pdb
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True,
@@ -51,8 +52,11 @@ for i in np.arange(0, len(imagePaths), bs):
     batchLabels = labels[i:i + bs]
     batchImages = []
 
-    for (j, imagePaths) in enumerate(batchPaths):
-        image = load_img(imagePaths, target_size=(224, 224))
+    for (j, imagePath) in enumerate(batchPaths):
+        try:
+            image = load_img(imagePath, target_size=(224, 224))
+        except:
+            pdb.set_trace()
         image = img_to_array(image)
         image = np.expand_dims(image, axis=0)
         image = imagenet_utils.preprocess_input(image)
