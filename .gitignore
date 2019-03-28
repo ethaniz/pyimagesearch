@@ -106,3 +106,4 @@ venv.bak/
 datasets/
 models/
 .DS_Store
+.vscode/
