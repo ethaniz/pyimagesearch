@@ -44,7 +44,7 @@ testGen = HDF5DatasetGenerator(config.TEST_HDF5, 64,
 predictions = []
 
 widgets = ["Evaluating: ", progressbar.Percentage(), " ",
-    progressbar.Bar(), " ", pregressbar.ETA()]
+    progressbar.Bar(), " ", progressbar.ETA()]
 pbar = progressbar.ProgressBar(maxval=testGen.numImages // 64,
     widgets=widgets).start()
 
