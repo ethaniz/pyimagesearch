@@ -19,7 +19,7 @@ from keras.regularizers import l2
 from keras import backend as K
 
 class AlexNet:
-    @classmethod
+    @staticmethod
     def build(width, height, depth, classes, reg=0.0002):
         model = Sequential()
         inputShape = (height, width, depth)

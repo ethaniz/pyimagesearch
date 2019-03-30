@@ -7,7 +7,7 @@
 
 # here put the import lib
 
-from keras.uitls import np_utils
+from keras.utils import np_utils
 import numpy as np
 import h5py
 
@@ -20,7 +20,7 @@ class HDF5DatasetGenerator:
         self.binarize = binarize
         self.classes = classes
 
-        self.db = h5py.File(dbpath)
+        self.db = h5py.File(dbPath)
         self.numImages = self.db["labels"].shape[0]
 
     def generator(self, passes=np.inf):
@@ -36,7 +36,7 @@ class HDF5DatasetGenerator:
                     procImages = []
                     for image in images:
                         for p in self.preprocessors:
-                            image = p.preprocessors(image)
+                            image = p.preprocess(image)
                         procImages.append(image)
                     images = np.array(procImages)
                 if self.aug is not None:

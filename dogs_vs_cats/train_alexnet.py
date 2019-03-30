@@ -22,6 +22,8 @@ from keras.preprocessing.image import ImageDataGenerator
 from keras.optimizers import Adam
 import json
 import os
+import pdb
+
 
 aug = ImageDataGenerator(rotation_range=20, zoom_range=0.15,
     width_shift_range=0.2, height_shift_range=0.2, shear_range=0.15,
@@ -41,8 +43,11 @@ valGen = HDF5DatasetGenerator(config.VAL_HDF5, 128, preprocessors=[sp, mp, iap],
 
 print("[INFO] compiling model...")
 opt = Adam(lr=1e-3)
-model.AlexNet.build(width=227, height=227, depth=3,
-    classes=2, reg=0.0002)
+
+#pdb.set_trace()
+
+model = AlexNet.build(width=227, height=227, depth=3, classes=2)
+
 model.compile(loss="binary_crossentropy", optimizer=opt,
     metrics=["accuracy"])
 
