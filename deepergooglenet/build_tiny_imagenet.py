@@ -24,7 +24,7 @@ trainLabels = [p.split(os.path.sep)[-3] for p in trainPaths]
 le = LabelEncoder()
 trainLabels = le.fit_transform(trainLabels)
 
-pdb.set_trace()
+#pdb.set_trace()
 
 split = train_test_split(trainPaths, trainLabels,
     test_size=config.NUM_TEST_IMAGES, stratify=trainLabels,
@@ -64,8 +64,8 @@ for (dType, paths, labels, outputPath) in datasets:
             G.append(g)
             B.append(b)
 
-         writer.add([image], [label]) 
-         pbar.update(i)
+        writer.add([image], [label]) 
+        pbar.update(i)
     pbar.finish()
     writer.close()  
 
