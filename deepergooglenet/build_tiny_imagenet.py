@@ -13,7 +13,7 @@ from sklearn.model_selection import train_test_split
 from pyimagesearch.io import HDF5DatasetWriter
 from imutils import paths
 import numpy as np
-import pregressbar
+import progressbar
 import json
 import cv2
 import os
