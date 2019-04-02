@@ -25,19 +25,19 @@ from keras import backend as K
 class ResNet:
     @staticmethod
     def residual_module(data, K, stride, chanDim, red=False,
-        reg=0.0001, bnEps=2e-5, bnMon=0.9):
+        reg=0.0001, bnEps=2e-5, bnMom=0.9):
 
         shortcut = data
-        bn1 = BatchNormalization(axis=chanDim, eposilon=bnEps,
-            momentum=bnMon)(data)
+        bn1 = BatchNormalization(axis=chanDim, epsilon=bnEps,
+            momentum=bnMom)(data)
         act1 = Activation('relu')(bn1)
         conv1 = Conv2D(int(K * 0.25), (1, 1), use_bias=False,
             kernel_regularizer=l2(reg))(act1)
 
         bn2 = BatchNormalization(axis=chanDim, epsilon=bnEps,
-            momentum=bnMon)(conv1)
+            momentum=bnMom)(conv1)
         act2 = Activation('relu')(bn2)
-        conv2 = Conv2D(int(k * 0.25), (3, 3), strides=stride,
+        conv2 = Conv2D(int(K * 0.25), (3, 3), strides=stride,
             padding='same', use_bias=False, kernel_regularizer=l2(reg))(act2)
         
         bn3 = BatchNormalization(axis=chanDim, epsilon=bnEps,
@@ -64,14 +64,14 @@ class ResNet:
             chanDim = 1
 
         inputs = Input(shape=inputShape)
-        x = BatchNormalization(axis=chanDim, epsilon=bnEps, momontum=bnMon)(inputs)
+        x = BatchNormalization(axis=chanDim, epsilon=bnEps, momentum=bnMom)(inputs)
 
         if dataset == 'cifar':
             x = Conv2D(filters[0], (3, 3), use_bias=False,
                 padding='same', kernel_regularizer=l2(reg))(x)
 
         for i in range(0, len(stages)):
-            stides = (1, 1) if i == 0 else (2, 2)
+            stride = (1, 1) if i == 0 else (2, 2)
             x = ResNet.residual_module(x, filters[i + 1], stride,
                 chanDim, red=True, bnEps=bnEps, bnMom=bnMom)
 

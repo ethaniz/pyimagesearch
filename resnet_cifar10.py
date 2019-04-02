@@ -1,4 +1,4 @@
-# -*- coding:utf8 -*-
+#-*- coding:utf8 -*-
 '''
 @Author: 异尘
 @Date: 2019/04/02 14:13:35
@@ -26,7 +26,7 @@ import sys
 ap = argparse.ArgumentParser()
 ap.add_argument("-c", "--checkpoints", required=True)
 ap.add_argument("-m", "--model", type=str)
-ap.add_argument("-s", "--start-epoch", type=int, default=0)
+ap.add_argument("-s", "--start_epoch", type=int, default=0)
 
 args = vars(ap.parse_args())
 
@@ -66,7 +66,7 @@ else:
     ))
 
 callbacks = [
-    EpochCheckPoint(args['checkpoints'], every=5, startAt=args['start+epoch'])
+    EpochCheckPoint(args['checkpoints'], every=5, startAt=args['start_epoch'])
 ]
 
 print("[INFO] training network ...")
