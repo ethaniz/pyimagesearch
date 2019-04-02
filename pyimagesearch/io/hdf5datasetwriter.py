@@ -10,8 +10,8 @@ class HDF5DatasetWriter:
             raise ValueError("The supplied 'outputPath' already exists", outputPath)
 
         self.db = h5py.File(outputPath, "w")
-        self.data = self.db.create_dataset(dataKey, dims, dtype='float')
-        self.labels = self.db.create_dataset("labels", (dims[0],), dtype='int')
+        self.data = self.db.create_dataset(dataKey, dims, dtype='float', compression='gzip')
+        self.labels = self.db.create_dataset("labels", (dims[0],), dtype='int', compression='gzip')
         self.bufSize = bufSize
         self.buffer = {"data": [], "labels": []}
         self.idx = 0
