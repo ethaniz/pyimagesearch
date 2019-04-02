@@ -14,7 +14,7 @@ from config import tiny_imagenet_config as config
 from pyimagesearch.preprocessing import ImageToArrayPreprocessor
 from pyimagesearch.preprocessing import SimplePreprocessor
 from pyimagesearch.preprocessing import MeanPreprocessor
-from pyimagesearch.callbacks import EpochCheckpoint
+from pyimagesearch.callbacks import EpochCheckPoint
 from pyimagesearch.callbacks import TrainingMonitor
 from pyimagesearch.io import HDF5DatasetGenerator
 from pyimagesearch.nn.conv import DeeperGoogLeNet
@@ -23,6 +23,7 @@ from keras.optimizers import Adam, SGD
 from keras.models import load_model
 import keras.backend as K
 import argparse
+import json
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-c", "--checkpoint", required=True)
@@ -63,7 +64,7 @@ else:
     print("[INFO] new learning rate: {}".format(K.get_value(model.optimizer.lr)))
 
 callbacks = [
-    EpochCheckpoint(args['checkpoint'], every=5, startAt=args['start_epoch']),
+    EpochCheckPoint(args['checkpoint'], every=5, startAt=args['start_epoch']),
 ]
 
 model.fit_generator(

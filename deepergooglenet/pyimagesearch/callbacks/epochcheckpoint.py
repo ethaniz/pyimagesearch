@@ -16,7 +16,7 @@ class EpochCheckPoint(Callback):
 
         self.outputPath = outputPath
         self.every = every
-        self.intEpoch = StartAt
+        self.intEpoch = startAt
 
     def on_epoch_end(self, epoch, logs={}):
         if (self.intEpoch + 1) % self.every == 0:

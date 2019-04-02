@@ -43,7 +43,7 @@ class DeeperGoogLeNet:
         first = DeeperGoogLeNet.conv_module(x, num1x1, 1, 1, (1, 1), chanDim, reg=reg, name=stage+'_first')
         
         second = DeeperGoogLeNet.conv_module(x, num3x3Reduce, 1, 1, (1, 1), chanDim, reg=reg, name=stage+'_second1')
-        second = DeeperGoogLeNet.conv_module(second, num3x3, 3, 3, (1, 1), chanDim, reg=reg, name=stage+'+second2')
+        second = DeeperGoogLeNet.conv_module(second, num3x3, 3, 3, (1, 1), chanDim, reg=reg, name=stage+'_second2')
 
         third = DeeperGoogLeNet.conv_module(x, num5x5Reduce, 1, 1, (1, 1), chanDim, reg=reg, name=stage+'_third1')
         third = DeeperGoogLeNet.conv_module(third, num5x5, 5, 5, (1, 1), chanDim, reg=reg, name=stage+'_third2')
@@ -57,7 +57,7 @@ class DeeperGoogLeNet:
 
     @staticmethod
     def build(width, height, depth, classes, reg=0.0005):
-        inputShape = (height, width, depthd)
+        inputShape = (height, width, depth)
         chanDim = -1
 
         if K.image_data_format() == "channels_first":
