@@ -22,7 +22,7 @@ import os
 
 ap = argparse.ArgumentParser()
 ap.add_argument("-d", "--dataset", required=True)
-ap.add_argument("-d", "--output", required=True)
+ap.add_argument("-o", "--output", required=True)
 ap.add_argument("-b", "--batch-size", type=int, default=32)
 ap.add_argument("-s", "--buffer-size", type=int, default=1000)
 
@@ -39,7 +39,7 @@ le = LabelEncoder()
 labels = le.fit_transform(labels)
 
 print('[INFO] loading network ...')
-model = VGG16(weogjts='imagenet', include_top=False)
+model = VGG16(weights='imagenet', include_top=False)
 
 dataset = HDF5DatasetWriter((len(imagePaths), 512 * 7 * 7),
     args['output'], dataKey="features", bufSize=args['buffer_size'])
