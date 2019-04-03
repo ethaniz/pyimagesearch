@@ -9,7 +9,7 @@
 
 from os import path
 
-BASE_PATH = '/Volumes/Transcend/DATASETS/challenges-in-representation-learning-facial-expression-recognition-challenge'
+BASE_PATH = '/data/tangle/pyimagesearch/datasets/challenges-in-representation-learning-facial-expression-recognition-challenge'
 
 INPUT_PATH = path.sep.join([BASE_PATH, 'fer2013/fer2013.csv'])
 

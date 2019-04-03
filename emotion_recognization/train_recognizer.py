@@ -40,8 +40,8 @@ if args["model"] is None:
     print("[INFO] compiling model ...")
     model = EmotionVGGNet.build(width=48, height=48, depth=1,
         classes=config.NUM_CLASSES)
-    #opt = Adam(lr=1e-3)
-    opt = SGD(1e-2, momentum=0.9)
+    opt = Adam(lr=1e-3)
+    #opt = SGD(1e-2, momentum=0.9)
     model.compile(loss="categorical_crossentropy", optimizer=opt,
         metrics=['accuracy'])
 
@@ -49,7 +49,7 @@ else:
     print("[INFO] loading {} ...".format(args['model']))
     model = load_model(args['model'])
     print("[INFO] old learning rate: {}".format(K.get_value(model.optimizer.lr)))
-    K.set_value(model.optimizer.lr, 1e-3)
+    K.set_value(model.optimizer.lr, 1e-5)
     print("[INFO] new learning rate: {}".format(K.get_value(model.optimizer.lr)))
 
 callbacks = [
